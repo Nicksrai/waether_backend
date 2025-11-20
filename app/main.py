@@ -8,15 +8,23 @@ from .schemas import ForecastResponse, CurrentWeather, WeatherItem
 
 app = FastAPI(title="Weather Forecast API")
 
-# Allow local dev frontend
+# # Allow local dev frontend
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["http://localhost:5173", "http://localhost:3000"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
-    allow_credentials=True,
+    allow_origins=[
+        "https://nicksrai.github.io",   # Your GitHub Pages frontend
+    ],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 @app.get("/api/weather", response_model=ForecastResponse)
 async def get_weather(city: Optional[str] = "London"):
     try:
