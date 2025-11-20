@@ -19,12 +19,13 @@ app = FastAPI(title="Weather Forecast API")
        
 # )
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://nicksrai.github.io",   # Your GitHub Pages frontend
     ],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
